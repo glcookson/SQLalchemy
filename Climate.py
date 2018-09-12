@@ -42,25 +42,25 @@ def observations():
 	obser = session.query(Measurement.tobs).all()
 	return jsonify(obser)
 
+#This last one ended up being very confusing
+# try:
+# 	@app.route("/api/v1.0/<start>/<end>")
+# 	def start_end():
+# 		s = input("Input a start date")
+# 		e = input("Input an end date (optional)")
+# 		if e == '':
+# 			@app.route("/api/v1.0/<start>")
+# 			def start():
+# 				temps = session.query(
+# 				func.min(Measurement.tobs),
+# 				func.max(Measurement.tobs),
+# 				func.avg(Measurement.tobs)).filter(Measurement.date >= s).all()
+# 		else:
+# 			temps = session.query(
+# 				func.min(Measurement.tobs),
+# 				func.max(Measurement.tobs),
+# 				func.avg(Measurement.tobs)).filter(Measurement.date >= s & Measurement.date <= e).all()
+# except TypeError:
 
-try:
-	@app.route("/api/v1.0/<start>/<end>")
-	def start_end():
-		s = input("Input a start date")
-		e = input("Input an end date (optional)")
-		if e == '':
-			@app.route("/api/v1.0/<start>")
-			def start():
-				temps = session.query(
-				func.min(Measurement.tobs),
-				func.max(Measurement.tobs),
-				func.avg(Measurement.tobs)).filter(Measurement.date >= s).all()
-		else:
-			temps = session.query(
-				func.min(Measurement.tobs),
-				func.max(Measurement.tobs),
-				func.avg(Measurement.tobs)).filter(Measurement.date >= s & Measurement.date <= e).all()
-except TypeError:
-
-	if __name__=='__main__':
-		app.run(debug=True)
+if __name__=='__main__':
+	app.run(debug=True)
